@@ -1,0 +1,118 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-black">
+        <h6 class="m-0 font-weight-bold text-white">Lista de Prendas</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-plus-circle"></i> Nueva Prenda</button>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Categoria</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img style="height:60px ;" src="https://i.ebayimg.com/thumbs/images/g/7uoAAOSw8jZlFix8/s-l640.jpg" class="rounded mx-auto d-block" /></td>
+                            <td>Camisa Nike</td>
+                            <td>Camisas</td>
+                            <td>M</td>
+                            <td>Negro</td>
+                            <td>25.00</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                <button class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  Modal-->
+<div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6>Detalle Prenda</h6>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" value="0" id="txtId">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-row">
+                                <div class="form-group col-sm-12">
+                                    <label for="txtNombre">Nombre</label>
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="Nombre">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-12">
+                                    <label for="cboCategoria">Categoria</label>
+                                    <select class="form-control form-control-sm" id="cboCategoria">
+                                        <option value="1">Camisas</option>
+                                        <option value="0">Hoddies</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-6">
+                                    <label for="txtTalla">Talla</label>
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtTalla" name="Talla">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="txtColor">Color</label>
+                                    <input type="text" class="form-control form-control-sm input-validar" id="txtColor" name="Color">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-12">
+                                    <label for="txtDescripcion">Descripcion</label>
+                                    <textarea class="form-control form-control-sm" id="txtDescripcion" name="Descripcion"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-6">
+                                    <label for="txtImagen">Imagen</label>
+                                    <input class="form-control-file" type="file" id="txtImagen" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <img id="imgPrenda" style="max-width:200px;" src="https://i.ebayimg.com/thumbs/images/g/7uoAAOSw8jZlFix8/s-l640.jpg" class="rounded mx-auto d-block" alt="...">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
+                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

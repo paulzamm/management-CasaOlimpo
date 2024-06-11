@@ -1,105 +1,141 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "management-CasaOlimpo": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": "dist/management-casa-olimpo",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "management-CasaOlimpo": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "standalone": false
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                "@schematics/angular:directive": {
+                    "standalone": false
+                },
+                "@schematics/angular:pipe": {
+                    "standalone": false
                 }
-              ],
-              "outputHashing": "all"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:application",
+                    "options": {
+                        "outputPath": "dist/management-casa-olimpo",
+                        "index": "src/index.html",
+                        "browser": "src/main.ts",
+                        "polyfills": [
+                            "zone.js"
+                        ],
+                        "tsConfig": "tsconfig.app.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.css",
+                            "src/assets/vendor/fontawesome-free/css/all.min.css",
+                            "src/assets/css/sb-admin-2.css",
+                            "src/assets/vendor/toastr/toastr.min.css",
+                            "src/assets/vendor/sweetalert/sweetalert.css",
+                            "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
+                            "src/assets/vendor/datatables/extensiones/css/responsive.dataTables.min.css",
+                            "src/assets/vendor/datatables/extensiones/css/buttons.dataTables.min.css",
+                            "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
+                            "src/assets/vendor/datatables/extensiones/css/responsive.dataTables.min.css",
+                            "src/assets/vendor/datatables/extensiones/css/buttons.dataTables.min.css"
+                        ],
+                        "scripts": [
+                            "src/assets/vendor/jquery/jquery.min.js",
+                            "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+
+                            "src/assets/vendor/jquery-easing/jquery.easing.min.js",
+
+                            "src/assets/js/sb-admin-2.js",
+                            "src/assets/vendor/toastr/toastr.min.js",
+                            "src/assets/vendor/sweetalert/sweetalert.js",
+                            "src/assets/vendor/loadingoverlay/loadingoverlay.min.js",
+
+                            "src/assets/vendor/chart.js/Chart.min.js",
+
+                            "src/assets/js/vistas/chart-bar-demo.js",
+                            "src/assets/js/vistas/chart-pie-demo.js",
+
+                            "src/assets/vendor/datatables/jquery.dataTables.min.js",
+                            "src/assets/vendor/datatables/dataTables.bootstrap4.min.js",
+
+                            "src/assets/vendor/datatables/extensiones/js/dataTables.responsive.min.js",
+
+                            "src/assets/vendor/datatables/extensiones/js/dataTables.buttons.min.js",
+                            "src/assets/vendor/datatables/extensiones/js/jszip.min.js",
+                            "src/assets/vendor/datatables/extensiones/js/buttons.html5.min.js",
+                            "src/assets/vendor/datatables/extensiones/js/buttons.print.min.js"
+
+
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "management-CasaOlimpo:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "management-CasaOlimpo:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "buildTarget": "management-CasaOlimpo:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ],
+                        "tsConfig": "tsconfig.spec.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.css"
+                        ],
+                        "scripts": []
+                    }
+                }
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "management-CasaOlimpo:build:production"
-            },
-            "development": {
-              "buildTarget": "management-CasaOlimpo:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "management-CasaOlimpo:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
         }
-      }
     }
-  }
 }
