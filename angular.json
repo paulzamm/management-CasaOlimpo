@@ -38,8 +38,6 @@
                             "src/styles.css",
                             "src/assets/vendor/fontawesome-free/css/all.min.css",
                             "src/assets/css/sb-admin-2.css",
-                            "src/assets/vendor/toastr/toastr.min.css",
-                            "src/assets/vendor/sweetalert/sweetalert.css",
                             "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
                             "src/assets/vendor/datatables/extensiones/css/responsive.dataTables.min.css",
                             "src/assets/vendor/datatables/extensiones/css/buttons.dataTables.min.css",
@@ -54,14 +52,6 @@
                             "src/assets/vendor/jquery-easing/jquery.easing.min.js",
 
                             "src/assets/js/sb-admin-2.js",
-                            "src/assets/vendor/toastr/toastr.min.js",
-                            "src/assets/vendor/sweetalert/sweetalert.js",
-                            "src/assets/vendor/loadingoverlay/loadingoverlay.min.js",
-
-                            "src/assets/vendor/chart.js/Chart.min.js",
-
-                            "src/assets/js/vistas/chart-bar-demo.js",
-                            "src/assets/js/vistas/chart-pie-demo.js",
 
                             "src/assets/vendor/datatables/jquery.dataTables.min.js",
                             "src/assets/vendor/datatables/dataTables.bootstrap4.min.js",
@@ -72,8 +62,6 @@
                             "src/assets/vendor/datatables/extensiones/js/jszip.min.js",
                             "src/assets/vendor/datatables/extensiones/js/buttons.html5.min.js",
                             "src/assets/vendor/datatables/extensiones/js/buttons.print.min.js"
-
-
                         ]
                     },
                     "configurations": {
