@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,9 @@ import { Chart, ChartType } from 'chart.js/auto';
 export class DashboardComponent {
   private charVentas!: Chart;
   private charProductos!: Chart;
+
+  constructor(private auth: AuthService){}
+
 
   ngOnInit(): void {
     //Gráfica de ventas

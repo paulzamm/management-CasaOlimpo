@@ -11713,11 +11713,3 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%;
 }
-
-.bg-black {
-    background: linear-gradient(180deg, #000000 10%, #000000 100%);
-}
-
-.bg-gradient-yellow {
-    background: linear-gradient(180deg, #f6c23e 10%, #f6c23e 100%);
-}

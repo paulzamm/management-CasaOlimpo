@@ -1,0 +1,25 @@
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-amber-400 to-amber-600">
+    <mat-spinner *ngIf="showLoadign" diameter="50" class="spinner"></mat-spinner>
+    <div *ngIf="!showLoadign" class="text-center w-full max-w-md  bg-white rounded shadow-lg">
+        <form [formGroup]="loginForm">
+            <img src="./../../../../assets/img/casa_olimpo_logo.png" class="mx-auto w-52 mt-2" alt="Logo">
+            <h1 class="text-black mt-4">¡Welcome to CasaOlimpo!</h1>
+            <div>
+                <mat-form-field appearance="fill" class="w-96">
+                    <mat-label>Username</mat-label>
+                    <input matInput autocomplete="off" formControlName="username">
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="w-96">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" autocomplete="off" formControlName="password">
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="w-96" [disabled]="loginForm.invalid" (click)="login()">Ingresar
+                    <mat-icon matSuffix>login</mat-icon>
+                </button>
+                <div class="mt-4"></div>
+            </div>
+        </form>
+
+    </div>
+</div>

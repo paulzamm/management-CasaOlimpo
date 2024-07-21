@@ -1,24 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './shared/components/layout/layout.component';
-import { DashboardComponent } from './business/dashboard/dashboard.component';
-import { PrendasComponent } from './business/prendas/prendas.component';
-import { CategoriasComponent } from './business/categorias/categorias.component';
-import { ClientesComponent } from './business/clientes/clientes.component';
+import { LoginComponent } from './business/authentication/login/login.component';
+import { authenticatedGuard } from './core/guards/authenticated.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'prendas', component: PrendasComponent },
-      { path: 'categorias', component: CategoriasComponent },
-      { path: 'clientes', component: ClientesComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
-    ],
-  },
+  { path: 'login', component: LoginComponent, pathMatch: 'full', canActivate: [authenticatedGuard] },
+  { path: 'pages', loadChildren: () => import('./shared/components/layout/layout.module').then(m => m.LayoutModule) },
+  { path: '', redirectTo: 'login' , pathMatch: 'full'},
+  { path: '**', redirectTo: 'login', pathMatch: 'full'}, 
 ];
 
 @NgModule({

@@ -1,21 +1,30 @@
-<div class="min-h-screen bg-gray-50/50">
-    <!-- sidebar -->
-    <app-sidebar></app-sidebar>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h1>Casa Olimpo</h1>
+        <button mat-icon-button (click)="sidenav.toggle();" matTooltip="Abrir/Cerrar Menú">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="flex-1"></div>
+        <h1>paulzamm | administrador</h1>
+        <button mat-icon-button (click)="logout()" matTooltip="Cerrar Sesión">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-    <div class="p-4 xl:ml-80">
-        <nav class="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">
-            <!-- Header - Navbar -->
-            <app-header></app-header>
-
-        </nav>
-        <div class="mt-0">
-            <!-- Content - Main -->
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened="true" mode="side" style="width: 200px;">
+        <mat-nav-list>
+            <mat-list-item routerLink="/pages/dashboard" routerLinkActive="active">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span mat-line>Dashboard</span>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="height: 80vh;" class="mx-5 mt-5">
             <router-outlet></router-outlet>
-
-        </div>
-        <div class="text-blue-gray-600">
-            <!-- Footer -->
             <app-footer></app-footer>
         </div>
-    </div>
-</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
