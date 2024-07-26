@@ -1,1 +1,32 @@
-<p>modal-usuario works!</p>
+<h2 mat-dialog-title>{{ accionTitle }} Usuario</h2>
+<hr>
+<mat-dialog-content class="p-4">
+    <form [formGroup]="usuarioForm">
+        <mat-form-field class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput autocomplete="off" formControlName="username_usuario" class="w-full">
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput autocomplete="off" formControlName="clave_usuario" class="w-full" type="password">
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="id_rol">
+                <mat-option *ngFor="let item of listaRoles" [value]="item.id_rol">
+                    {{ item.nombre_rol }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput autocomplete="off" formControlName="email_usuario" class="w-full" placeholder="user@example.com">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="usuarioForm.invalid" (click)="guardarUsuario()">{{ accionButton }}</button>
+</mat-dialog-actions>

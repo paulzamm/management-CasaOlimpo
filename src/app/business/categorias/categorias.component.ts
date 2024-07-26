@@ -78,7 +78,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit{
   deleteMarca(id: number){
     Swal.fire({
       title: '¿Estás seguro?',
-      text: 'Una Marca eliminada no se puede recuperar',
+      text: 'Una Categoría eliminada no se puede recuperar',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',

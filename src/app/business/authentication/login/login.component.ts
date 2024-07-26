@@ -24,7 +24,7 @@ export class LoginComponent {
 
   initForm():FormGroup{
     return this._formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]]
     });
   }

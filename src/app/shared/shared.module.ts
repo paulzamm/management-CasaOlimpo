@@ -24,6 +24,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list'; 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSidenavModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -73,7 +77,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSidenavModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers:[
     MatDatepickerModule,

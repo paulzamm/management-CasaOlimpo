@@ -10,7 +10,7 @@ export class SidenavComponent {
 
   menuItems = signal<menuItem[]>([
     { icon: 'dashboard', label: 'Dashboard', route: '/pages/dashboard' },
-    { icon: 'account_circle', label: 'Usuarios', route: '/pages/clientes' },
+    { icon: 'account_circle', label: 'Usuarios', route: '/pages/usuarios' },
     { icon: 'group', label: 'Clientes', route: '/pages/clientes' },
     { icon: 'store', label: 'Marcas', route: '/pages/marcas' },
     { icon: 'list_alt', label: 'Prendas', route: '/pages/prendas' },

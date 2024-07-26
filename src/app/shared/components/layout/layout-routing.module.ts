@@ -7,6 +7,7 @@ import { CategoriasComponent } from '../../../business/categorias/categorias.com
 import { ClientesComponent } from '../../../business/clientes/clientes.component';
 import { authGuard } from '../../../core/guards/auth.guard';
 import { MarcasComponent } from '../../../business/marcas/marcas.component';
+import { UsuariosComponent } from '../../../business/usuarios/usuarios.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'categorias', component: CategoriasComponent, canActivate: [authGuard]},
       { path: 'clientes', component: ClientesComponent, canActivate: [authGuard]},
       { path: 'marcas', component:  MarcasComponent, canActivate: [authGuard]},
+      { path: 'usuarios', component:  UsuariosComponent, canActivate: [authGuard]},
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
