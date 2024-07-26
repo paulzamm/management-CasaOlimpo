@@ -1,1 +1,21 @@
-<p>modal-categoria works!</p>
+<h2 mat-dialog-title>{{ accionTitle }} Categoría</h2>
+<hr>
+<mat-dialog-content class="p-4">
+    <form [formGroup]="categoriaForm">
+        <mat-form-field class="w-full">
+            <mat-label>Nombre</mat-label>
+            <input matInput autocomplete="off" formControlName="nombre_categoria" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput autocomplete="off" formControlName="descripcion_categoria" class="w-full"></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="categoriaForm.invalid" (click)="guardarCategoria()">{{ accionButton }}</button>
+</mat-dialog-actions>

@@ -20,6 +20,8 @@ import { ModalClienteComponent } from './business/clientes/modal-cliente/modal-c
 import { MarcasComponent } from './business/marcas/marcas.component';
 import { ModalMarcaComponent } from './business/marcas/modal-marca/modal-marca.component';
 import { ModalCategoriaComponent } from './business/categorias/modal-categoria/modal-categoria.component';
+import { UsuariosComponent } from './business/usuarios/usuarios.component';
+import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-usuario.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ModalCategoriaComponent } from './business/categorias/modal-categoria/m
     ModalClienteComponent,
     MarcasComponent,
     ModalMarcaComponent,
-    ModalCategoriaComponent
+    ModalCategoriaComponent,
+    UsuariosComponent,
+    ModalUsuarioComponent
   ],
   imports: [
     BrowserModule,

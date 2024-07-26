@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MarcaService } from '../../../core/services/marca.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,13 +11,13 @@ import { Marca } from '../../../core/models/marca';
   styleUrl: './modal-marca.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ModalMarcaComponent {
+export class ModalMarcaComponent implements OnInit{
   marcaForm!: FormGroup;
   accionTitle: string = 'Agregar';
   accionButton: string = 'Guardar';
 
   constructor(private _formBuilder: FormBuilder, private _marcaService: MarcaService,
-    private _sanckBar: MatSnackBar, private modalActual: MatDialogRef<ModalMarcaComponent>,
+    private _snackBar: MatSnackBar, private modalActual: MatDialogRef<ModalMarcaComponent>,
     @Inject(MAT_DIALOG_DATA) private obMarca: Marca
   ){
     if(this.obMarca != null){
@@ -57,7 +57,7 @@ export class ModalMarcaComponent {
     if(this.obMarca == null){
       this._marcaService.createMarca(_marca).subscribe({
         next: () => {
-          this._sanckBar.open('Marca creada con éxito', '', {
+          this._snackBar.open('Marca creada con éxito', '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
@@ -65,7 +65,7 @@ export class ModalMarcaComponent {
           this.modalActual.close('true');
         },
         error: () => {
-          this._sanckBar.open('Error al crear la marca', '', {
+          this._snackBar.open('Error al crear la marca', '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
@@ -75,7 +75,7 @@ export class ModalMarcaComponent {
     }else{
       this._marcaService.updateMarca(_marca).subscribe({
         next: () => {
-          this._sanckBar.open('Marca actualizada con éxito', '', {
+          this._snackBar.open('Marca actualizada con éxito', '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
@@ -83,7 +83,7 @@ export class ModalMarcaComponent {
           this.modalActual.close('true');
         },
         error: () => {
-          this._sanckBar.open('Error al actualizar la marca', '', {
+          this._snackBar.open('Error al actualizar la marca', '', {
             duration: 1500,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
