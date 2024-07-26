@@ -10,7 +10,6 @@ import { AuthService } from '../../core/services/auth.service';
 export class DashboardComponent {
   private charVentas!: Chart;
   private charProductos!: Chart;
-
   constructor(private auth: AuthService){}
 
 

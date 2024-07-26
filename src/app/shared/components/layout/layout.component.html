@@ -1,11 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="mat-elevation-z3">
     <mat-toolbar-row>
         <h1>Casa Olimpo</h1>
         <button mat-icon-button (click)="sidenav.toggle();" matTooltip="Abrir/Cerrar Menú">
           <mat-icon>menu</mat-icon>
         </button>
         <div class="flex-1"></div>
-        <h1>paulzamm | administrador</h1>
+        <h1> {{ user.username_usuario }} | {{ user.id_rol === 1 ? 'Admin' : 'User' }}</h1>
         <button mat-icon-button (click)="logout()" matTooltip="Cerrar Sesión">
             <mat-icon>logout</mat-icon>
         </button>
@@ -13,16 +13,11 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav opened="true" mode="side" style="width: 200px;">
-        <mat-nav-list>
-            <mat-list-item routerLink="/pages/dashboard" routerLinkActive="active">
-                <mat-icon mat-list-icon>home</mat-icon>
-                <span mat-line>Dashboard</span>
-            </mat-list-item>
-        </mat-nav-list>
+    <mat-sidenav #sidenav opened="true" mode="side" style="width: 250px;">
+        <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div style="height: 80vh;" class="mx-5 mt-5">
+        <div class="mx-5 mt-5">
             <router-outlet></router-outlet>
             <app-footer></app-footer>
         </div>

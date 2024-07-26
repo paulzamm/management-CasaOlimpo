@@ -20,7 +20,6 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.initForm();
-
   }
 
   initForm():FormGroup{

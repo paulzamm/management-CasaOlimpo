@@ -1,0 +1,10 @@
+mat-toolbar {
+    background-color: #FFBF00;
+    color: black;
+    position: relative;
+    z-index: 5;
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 64px);
+}

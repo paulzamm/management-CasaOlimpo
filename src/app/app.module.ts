@@ -15,6 +15,11 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './business/authentication/login/login.component';
 import { LayoutRoutingModule } from './shared/components/layout/layout-routing.module';
+import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
+import { ModalClienteComponent } from './business/clientes/modal-cliente/modal-cliente.component';
+import { MarcasComponent } from './business/marcas/marcas.component';
+import { ModalMarcaComponent } from './business/marcas/modal-marca/modal-marca.component';
+import { ModalCategoriaComponent } from './business/categorias/modal-categoria/modal-categoria.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,11 @@ import { LayoutRoutingModule } from './shared/components/layout/layout-routing.m
     FooterComponent,
     LayoutComponent,
     LoginComponent,
+    SidenavComponent,
+    ModalClienteComponent,
+    MarcasComponent,
+    ModalMarcaComponent,
+    ModalCategoriaComponent
   ],
   imports: [
     BrowserModule,

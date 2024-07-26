@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { 
     this.myappUrl = environment.apiUrl;
     this.myapiUrl = 'token/';
-    this.myUrl = this.myappUrl + this.myapiUrl;
+    this.myUrl = `${this.myappUrl}${this.myapiUrl}`;
   }
   
   /**
@@ -85,8 +86,19 @@ export class AuthService {
   getHeaders(): HttpHeaders{
     const token = this.getToken();
     return new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Accept': 'application/json',
       'Authorization': `Bearer ${token}`
     });
+  }
+  
+  /**
+   * Obtener el usuario actual autenticado
+   * @returns Current User
+   */
+  getCurrentUser(): Observable<Usuario> {
+    const headers = this.getHeaders();
+    const url = `${this.myappUrl}users/me`;
+
+    return this.http.get<Usuario>(url, { headers });
   }
 }

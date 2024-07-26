@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ accionTitle }} Marca</h2>
+<hr>
+<mat-dialog-content class="p-4">
+    <form [formGroup]="marcaForm">
+        <mat-form-field class="w-full">
+            <mat-label>Nombre</mat-label>
+            <input matInput autocomplete="off" formControlName="nombre_marca" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput autocomplete="off" formControlName="descripcion_marca" class="w-full"></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="marcaForm.invalid" (click)="guardarMarca()">{{ accionButton }}</button>
+</mat-dialog-actions>
