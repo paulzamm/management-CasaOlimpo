@@ -1,1 +1,51 @@
-<p>modal-cliente works!</p>
+<h2 mat-dialog-title>{{ accionTitle }} Cliente</h2>
+<hr>
+<mat-dialog-content class="p-0">
+    <form [formGroup]="clienteForm" class="grid grid-cols-2 gap-3 mx-4">
+        <mat-form-field class="col-span-2 w-full">
+            <mat-label>Cédula</mat-label>
+            <input matInput autocomplete="off" formControlName="cedula_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Primer Nombre</mat-label>
+            <input matInput autocomplete="off" formControlName="primer_nombre_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Segundo Nombre</mat-label>
+            <input matInput autocomplete="off" formControlName="segundo_nombre_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Primer Apellido</mat-label>
+            <input matInput autocomplete="off" formControlName="primer_apellido_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Segundo Apellido</mat-label>
+            <input matInput autocomplete="off" formControlName="segundo_apellido_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Dirección</mat-label>
+            <input matInput autocomplete="off" formControlName="direccion_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Ciudad</mat-label>
+            <input matInput autocomplete="off" formControlName="ciudad_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="col-span-2 w-full">
+            <mat-label>Correo</mat-label>
+            <input matInput autocomplete="off" formControlName="correo_cliente" class="w-full" placeholder="user@example.com">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="clienteForm.invalid" (click)="guardarCliente()">{{ accionButton }}</button>
+</mat-dialog-actions>

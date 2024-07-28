@@ -1,118 +1,87 @@
-<div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gradient-to-br from-gray-800 to-gray-900">
-        <h6 class="m-0 font-weight-bold text-white">Lista de Prendas</h6>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-3">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-plus-circle"></i> Nueva Prenda</button>
-            </div>
-        </div>
-        <hr/>
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Categoria</th>
-                            <th>Talla</th>
-                            <th>Color</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img style="height:60px ;" src="https://i.ebayimg.com/thumbs/images/g/7uoAAOSw8jZlFix8/s-l640.jpg" class="rounded mx-auto d-block" /></td>
-                            <td>Camisa Nike</td>
-                            <td>Camisas</td>
-                            <td>M</td>
-                            <td>Negro</td>
-                            <td>25.00</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                <button class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+<mat-card class="mat-elevation-z2">
+    <mat-card-title>
+        <mat-toolbar color="secondary">
+            <span>Prendas</span>
+            <button mat-raised-button color="primary" class="ml-auto" (click)="createPrenda()">
+                    <mat-icon>add</mat-icon>
+                    <span>Agregar Prenda</span>
+                </button>
+        </mat-toolbar>
+        <mat-form-field class="w-full">
+            <mat-label>Buscar</mat-label>
+            <input matInput autocomplete="off" (keyup)="aplicarFiltroTabla($event)" #input>
+        </mat-form-field>
+    </mat-card-title>
+    <mat-card-content class="dashboard-card-content">
+        <div class="mat-elevation-z0" style="overflow: auto;">
+            <table mat-table [dataSource]="dataListaPrendas">
 
-<!--  Modal-->
-<div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6>Detalle Prenda</h6>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <input type="hidden" value="0" id="txtId">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="Nombre">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-                                    <label for="cboCategoria">Categoria</label>
-                                    <select class="form-control form-control-sm" id="cboCategoria">
-                                        <option value="1">Camisas</option>
-                                        <option value="0">Hoddies</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtTalla">Talla</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtTalla" name="Talla">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="txtColor">Color</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtColor" name="Color">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-                                    <label for="txtDescripcion">Descripcion</label>
-                                    <textarea class="form-control form-control-sm" id="txtDescripcion" name="Descripcion"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtImagen">Imagen</label>
-                                    <input class="form-control-file" type="file" id="txtImagen" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <img id="imgPrenda" style="max-width:200px;" src="https://i.ebayimg.com/thumbs/images/g/7uoAAOSw8jZlFix8/s-l640.jpg" class="rounded mx-auto d-block" alt="...">
-                        </div>
+                <!-- Imagen Column -->
+                <ng-container matColumnDef="img">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Imagen </th>
+                    <td mat-cell *matCellDef="let element">
+                        <img [src]="element.imagen_prenda" alt="Imagen Prenda" class="w-10 h-10">
+                    </td>
+                </ng-container>
 
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
-            </div>
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre_prenda}} </td>
+                </ng-container>
+
+                <!-- Marca Column -->
+                <ng-container matColumnDef="marca">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Marca </th>
+                    <td mat-cell *matCellDef="let element"> {{ getMarcaNombre(element.id_marca) }}</td>
+                </ng-container>
+
+                <!-- Categoria Column -->
+                <ng-container matColumnDef="categoria">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Categoria </th>
+                    <td mat-cell *matCellDef="let element"> {{ getCategoriaNombre(element.id_categoria) }}</td>
+                </ng-container>
+
+                <!-- Talla Column -->
+                <ng-container matColumnDef="talla">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Talla </th>
+                    <td mat-cell *matCellDef="let element"> {{element.talla_prenda}} </td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="color">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Color </th>
+                    <td mat-cell *matCellDef="let element"> {{element.color_prenda}} </td>
+                </ng-container>
+
+                <!-- Precio Column -->
+                <ng-container matColumnDef="precio">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Precio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.precio_prenda}} </td>
+                </ng-container>
+
+                <!-- Acciones Column -->
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef class="w-5">Acciones</th>
+                    <td mat-cell *matCellDef="let element" style="text-align: start;">
+                        <a class="pointer text-sky-700 hover:text-sky-600" matTooltip="Editar Prenda" (click)="updatePrenda(element)">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                        <a class="pointer text-red-500 hover:text-red-400" matTooltip="Eliminar Prenda" (click)="deletePrenda(element.id_prenda)">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+                <tr class="mat-row " *matNoDataRow>
+                    <td class="mat-cell " colspan="4 ">No hay datos que concidan con: "{{ input.value }} "</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20] " showFirstLastButtons>
+            </mat-paginator>
         </div>
-    </div>
-</div>
+    </mat-card-content>
+</mat-card>

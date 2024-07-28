@@ -19,7 +19,7 @@ export class ClienteService {
     this.myUrl = `${this.myappUrl}${this.myapiUrl}`;
    }
 
-   getClientes(skip: number, limit: number): Observable<Cliente[]>{
+  getClientes(skip: number, limit: number): Observable<Cliente[]>{
     const headers = this.auth.getHeaders();
     return this.http.get<Cliente[]>(`${this.myUrl}?skip=${skip}&limit=${limit}`, { headers });
   }

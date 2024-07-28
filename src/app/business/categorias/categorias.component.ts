@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrl: './categorias.component.css'
 })
 export class CategoriasComponent implements OnInit, AfterViewInit{
-  displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'descripcion', 'acciones'];
   dataInicio: Categoria[] = [];
   dataListaCategorias = new MatTableDataSource(this.dataInicio);
 

@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalUsuarioComponent } from './modal-usuario/modal-usuario.component';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../core/services/auth.service';
+import { RolService } from '../../core/services/rol.service';
+import { Rol } from '../../core/models/rol';
 
 @Component({
   selector: 'app-usuarios',
@@ -15,19 +17,19 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './usuarios.component.css'
 })
 export class UsuariosComponent implements OnInit, AfterViewInit{
-  displayedColumns: string[] = ['id', 'username', 'email', 'rol', 'acciones'];
+  displayedColumns: string[] = ['username', 'email', 'rol', 'acciones'];
   dataInicio: Usuario[] = [];
   dataListaUsuarios = new MatTableDataSource(this.dataInicio);
 
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
 
   constructor(private _usuarioService: UsuarioService, private _authService: AuthService,
-    private _snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar, private _rolService: RolService,
     private _dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.getUsuarios();      
+    this.getUsuarios();   
   }
 
   ngAfterViewInit(): void {
@@ -48,6 +50,14 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
         this._snackBar.open('Error al cargar los usuarios', '', {
           duration: 2000
         });
+      }
+    });
+  }
+  
+  getNombreRol(id: number){
+    this._rolService.getRolById(id).subscribe({
+      next: (data) =>{
+        
       }
     });
   }

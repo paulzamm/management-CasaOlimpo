@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,23 @@ export class LoginComponent {
     this.password = this.loginForm.value.password;
     this.showLoadign = true;
     this.auth.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/pages/dashboard']),
+      next: () => {
+        this.auth.getCurrentUser().subscribe({
+          next: (data) => {
+            if(data.id_rol === 1){
+              this.router.navigate(['/pages/dashboard'])
+            }else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Acceso denegado',
+                text: 'No tienes permisos para acceder a esta sección',
+                confirmButtonText: 'Aceptar'
+              });
+              this.auth.logout();
+            }
+          }
+        });
+      },
       error: () => {
         this._snackBar.open('Usuario o contraseña incorrectos', 'Cerrar', {
           duration: 3000,

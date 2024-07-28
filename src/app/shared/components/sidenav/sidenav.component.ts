@@ -13,11 +13,11 @@ export class SidenavComponent {
     { icon: 'account_circle', label: 'Usuarios', route: '/pages/usuarios' },
     { icon: 'group', label: 'Clientes', route: '/pages/clientes' },
     { icon: 'store', label: 'Marcas', route: '/pages/marcas' },
-    { icon: 'list_alt', label: 'Prendas', route: '/pages/prendas' },
     { icon: 'sell', label: 'Categorías', route: '/pages/categorias' },
-    { icon: 'currency_exchange', label: 'Venta', route: '/pages/categorias' },
-    { icon: 'edit_note', label: 'Historial Ventas', route: '/pages/categorias' },
-    { icon: 'receipt', label: 'Reportes', route: '/pages/categorias' },
+    { icon: 'list_alt', label: 'Prendas', route: '/pages/prendas' },
+    { icon: 'currency_exchange', label: 'Venta', route: '/pages/ventas' },
+    { icon: 'edit_note', label: 'Historial Ventas', route: '/pages/ventas' },
+    { icon: 'receipt', label: 'Reportes', route: '/pages/ventas' },
   ]);
 }
 

@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrl: './marcas.component.css'
 })
 export class MarcasComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'descripcion', 'acciones'];
   dataInicio: Marca[] = [];
   dataListaMarcas = new MatTableDataSource(this.dataInicio);
  

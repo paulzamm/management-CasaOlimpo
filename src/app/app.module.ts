@@ -22,6 +22,10 @@ import { ModalMarcaComponent } from './business/marcas/modal-marca/modal-marca.c
 import { ModalCategoriaComponent } from './business/categorias/modal-categoria/modal-categoria.component';
 import { UsuariosComponent } from './business/usuarios/usuarios.component';
 import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-usuario.component';
+import { VentasComponent } from './business/ventas/ventas.component';
+import { ModalPrendaComponent } from './business/prendas/modal-prenda/modal-prenda.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,9 @@ import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-u
     ModalMarcaComponent,
     ModalCategoriaComponent,
     UsuariosComponent,
-    ModalUsuarioComponent
+    ModalUsuarioComponent,
+    VentasComponent,
+    ModalPrendaComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,17 @@ import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-u
     LayoutRoutingModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideFirebaseApp(() => initializeApp({
+      apiKey: "AIzaSyBAlTIZAGyv6MPFar-iAE4Q8D2r80Lc9mA",
+      authDomain: "casaolimpo-storage.firebaseapp.com",
+      projectId: "casaolimpo-storage",
+      storageBucket: "casaolimpo-storage.appspot.com",
+      messagingSenderId: "559391945141",
+      appId: "1:559391945141:web:4cd281285a5b118c4829fc",
+  })),
+  
+    provideStorage(() => getStorage())
   ],
   bootstrap: [AppComponent]
 })

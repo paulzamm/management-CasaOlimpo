@@ -8,6 +8,7 @@ import { ClientesComponent } from '../../../business/clientes/clientes.component
 import { authGuard } from '../../../core/guards/auth.guard';
 import { MarcasComponent } from '../../../business/marcas/marcas.component';
 import { UsuariosComponent } from '../../../business/usuarios/usuarios.component';
+import { VentasComponent } from '../../../business/ventas/ventas.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'clientes', component: ClientesComponent, canActivate: [authGuard]},
       { path: 'marcas', component:  MarcasComponent, canActivate: [authGuard]},
       { path: 'usuarios', component:  UsuariosComponent, canActivate: [authGuard]},
+      { path: 'ventas', component: VentasComponent, canActivate: [authGuard]},
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
