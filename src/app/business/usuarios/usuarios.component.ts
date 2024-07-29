@@ -70,7 +70,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
   }
 
   getNombreRol(id: number): string{
-    return this.listaRoles.find(x => x.id_rol == id)?.nombre_rol || '';
+    return this.listaRoles.find(x => x.id_rol === id)?.nombre_rol || '';
   }
 
   createUsuario(){

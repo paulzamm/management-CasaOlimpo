@@ -1,1 +1,74 @@
-<p>modal-prenda works!</p>
+<h2 mat-dialog-title>{{ accionTitle }} Prenda</h2>
+<hr>
+<mat-dialog-content class="p-0">
+    <form [formGroup]="prendaForm" class="grid grid-cols-5 gap-3 mx-4">
+        <div class="col-span-3 grid grid-cols-2 gap-3">
+            <mat-form-field class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input matInput autocomplete="off" formControlName="nombre_prenda" class="w-full">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Talla</mat-label>
+                <input matInput autocomplete="off" formControlName="talla_prenda" class="w-full">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Categoria</mat-label>
+                <mat-select formControlName="id_categoria">
+                    <mat-option *ngFor="let item of listaCategorias" [value]="item.id_categoria">
+                        {{ item.nombre_categoria }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="id_marca">
+                    <mat-option *ngFor="let item of listaMarcas" [value]="item.id_marca">
+                        {{ item.nombre_marca }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Color</mat-label>
+                <input matInput autocomplete="off" formControlName="color_prenda" class="w-full">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Precio</mat-label>
+                <input matInput autocomplete="off" formControlName="precio_prenda" class="w-full">
+                <mat-icon matSuffix>attach_money</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="col-span-2 w-full">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput autocomplete="off" formControlName="descripcion_prenda" class="w-full h-40"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-2 flex flex-col items-center p-4 rounded-lg shadow-md bg-zinc-100" style="height: 350px;">
+            <mat-label class="text-lg mb-4">Imagen</mat-label>
+
+            <button mat-raised-button color="primary" (click)="fileInput.click()" class="mb-4">
+                <mat-icon>upload</mat-icon>
+                Subir Imagen
+            </button>
+
+            <input type="file" #fileInput class="hidden" accept="image/*" (change)="uploadImage($event)">
+
+            <div class="flex justify-center items-center w-full h-48 overflow-hidden">
+                <mat-spinner *ngIf="loading" diameter="50"></mat-spinner>
+                <img *ngIf="!loading" [src]="imageURL" alt="Imagen Prenda" class="object-contain w-full h-full">
+            </div>
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="prendaForm.invalid" (click)="guardarPrenda()">{{ accionButton }}</button>
+</mat-dialog-actions>

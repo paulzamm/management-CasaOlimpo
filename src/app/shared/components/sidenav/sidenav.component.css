@@ -1,3 +1,7 @@
 span {
     user-select: none;
 }
+
+.active-link {
+    background-color: #c8c4c467;
+}

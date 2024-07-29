@@ -23,6 +23,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list'; 
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatSelectModule } from '@angular/material/select'; 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 
 @NgModule({
   declarations: [],
@@ -48,6 +49,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -70,6 +72,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers:[
     MatDatepickerModule,
