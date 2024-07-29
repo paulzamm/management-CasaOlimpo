@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClienteService } from '../../../core/services/cliente.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Cliente } from '../../../core/models/cliente';
+import { Usuario } from '../../../core/models/usuario';
+import { UsuarioService } from '../../../core/services/usuario.service';
 
 @Component({
   selector: 'app-modal-cliente',
@@ -14,10 +16,11 @@ export class ModalClienteComponent implements OnInit {
   clienteForm!: FormGroup;
   accionTitle: string = 'Agregar';
   accionButton: string = 'Guardar';
+  listaUsuarios: Usuario[] = [];
 
   constructor(private _formBuilder: FormBuilder, private _clienteService: ClienteService,
     private _snackBar: MatSnackBar, private modalActual: MatDialogRef<ModalClienteComponent>,
-    @Inject(MAT_DIALOG_DATA) private obCliente: Cliente
+    @Inject(MAT_DIALOG_DATA) private obCliente: Cliente, private _usuarioService: UsuarioService
   ){
     if(this.obCliente != null){
       this.accionTitle = 'Editar';
@@ -27,14 +30,28 @@ export class ModalClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.clienteForm = this.initForm();
+    this.getUsuarios();
     if(this.obCliente != null){
       this.setDatos(this.obCliente);
     }
   }
+  
+  getUsuarios(){
+    this._usuarioService.getUsuarios(0, 10000).subscribe({
+      next: (data) => {
+        this.listaUsuarios = data;
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar los usuarios', '', {
+          duration: 2000
+        });
+      }
+    });
+  }
 
   initForm(): FormGroup{
     return this._formBuilder.group({
-      id_usuario: [''],
+      id_usuario: ['', [Validators.required]],
       cedula_cliente: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       primer_nombre_cliente: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       segundo_nombre_cliente: ['', [Validators.minLength(3), Validators.maxLength(50)]],

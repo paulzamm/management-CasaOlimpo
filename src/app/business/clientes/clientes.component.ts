@@ -67,7 +67,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
   updateCliente(cliente: Cliente){
     this._dialog.open(ModalClienteComponent, {
       width: '500px',
-      height: '400px',
+      height: '525px',
       disableClose: true,
       data: cliente
     }).afterClosed().subscribe(result => {

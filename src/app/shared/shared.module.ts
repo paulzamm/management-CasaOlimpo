@@ -12,7 +12,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -22,11 +21,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav'; 
 import { MatListModule } from '@angular/material/list'; 
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatSelectModule } from '@angular/material/select'; 
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
-
 
 @NgModule({
   declarations: [],
@@ -42,7 +38,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatToolbarModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatProgressBarModule,
     MatSnackBarModule,
     MatDialogModule,
     MatInputModule,
@@ -51,10 +46,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCardModule,
     MatSidenavModule,
     MatListModule,
-    MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatCheckboxModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -67,7 +60,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatToolbarModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatProgressBarModule,
     MatSnackBarModule,
     MatDialogModule,
     MatInputModule,
@@ -76,10 +68,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCardModule,
     MatSidenavModule,
     MatListModule,
-    MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatCheckboxModule
   ],
   providers:[
     MatDatepickerModule,

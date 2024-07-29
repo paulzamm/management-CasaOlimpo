@@ -20,6 +20,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = ['username', 'email', 'rol', 'acciones'];
   dataInicio: Usuario[] = [];
   dataListaUsuarios = new MatTableDataSource(this.dataInicio);
+  listaRoles: Rol[] = [];
 
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
 
@@ -29,6 +30,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
+    this.getRoles();
     this.getUsuarios();   
   }
 
@@ -54,12 +56,21 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
     });
   }
   
-  getNombreRol(id: number){
-    this._rolService.getRolById(id).subscribe({
-      next: (data) =>{
-        
+  getRoles(){
+    this._rolService.getRoles(0, 10).subscribe({
+      next: (data) => {
+        this.listaRoles = data;
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar los roles', '', {
+          duration: 2000
+        });
       }
     });
+  }
+
+  getNombreRol(id: number): string{
+    return this.listaRoles.find(x => x.id_rol == id)?.nombre_rol || '';
   }
 
   createUsuario(){

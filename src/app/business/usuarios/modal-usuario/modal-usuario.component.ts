@@ -6,7 +6,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Usuario } from '../../../core/models/usuario';
 import { Rol } from '../../../core/models/rol';
 import { RolService } from '../../../core/services/rol.service';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-modal-usuario',
@@ -45,7 +44,7 @@ export class ModalUsuarioComponent implements OnInit{
       id_rol: ['', [Validators.required]],
       username_usuario: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       clave_usuario: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      email_usuario: ['', [Validators.required, Validators.email, Validators.maxLength(100)]]
+      email_usuario: ['', [Validators.required, Validators.email, Validators.min(10), Validators.maxLength(100)]]
     });
   }
    

@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-  showLoadign = false;
   username: string = '';
   password: string = '';
 
@@ -33,7 +32,6 @@ export class LoginComponent {
   login(): void{
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    this.showLoadign = true;
     this.auth.login(this.username, this.password).subscribe({
       next: () => {
         this.auth.getCurrentUser().subscribe({
@@ -60,6 +58,5 @@ export class LoginComponent {
         }); 
       }
     });
-    this.showLoadign = false;
   }
 }

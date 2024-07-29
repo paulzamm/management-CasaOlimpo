@@ -92,10 +92,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "management-CasaOlimpo:build:production"
+                            "buildTarget": "management-casa-olimpo:build:production"
                         },
                         "development": {
-                            "buildTarget": "management-CasaOlimpo:build:development"
+                            "buildTarget": "management-casa-olimpo:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -103,7 +103,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "buildTarget": "management-CasaOlimpo:build"
+                        "buildTarget": "management-casa-olimpo:build"
                     }
                 },
                 "test": {

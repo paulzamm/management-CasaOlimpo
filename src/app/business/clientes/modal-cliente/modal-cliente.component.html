@@ -2,9 +2,18 @@
 <hr>
 <mat-dialog-content class="p-0">
     <form [formGroup]="clienteForm" class="grid grid-cols-2 gap-3 mx-4">
-        <mat-form-field class="col-span-2 w-full">
+        <mat-form-field class="w-full">
             <mat-label>Cédula</mat-label>
             <input matInput autocomplete="off" formControlName="cedula_cliente" class="w-full">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Usuario</mat-label>
+            <mat-select formControlName="id_usuario">
+                <mat-option *ngFor="let item of listaUsuarios" [value]="item.id_usuario">
+                    {{ item.username_usuario }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field class="w-full">
