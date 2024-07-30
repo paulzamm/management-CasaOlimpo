@@ -103,13 +103,13 @@ export class ModalPrendaComponent implements OnInit{
     if(input.files && input.files.length > 0){
       const file = event.target.files[0];
       const imgRef = ref(this.storage, `prendas/${file.name}`);
+      this.imageURL = '';
+      this.nombreImagen = '';
       this.loading = true;
       uploadBytes(imgRef, file)
       .then(() => {
-        this.imageURL = '';
-        this.nombreImagen = '';
-        this.getImage(file.name);
         this.nombreImagen = file.name;
+        this.getImage(file.name);
         this.loading = false;
       })
       .catch(() => {
