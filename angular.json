@@ -38,32 +38,9 @@
                             "src/styles.css",
                             "@angular/material/prebuilt-themes/indigo-pink.css",
                             "src/assets/vendor/fontawesome-free/css/all.min.css",
-                            "src/assets/css/sb-admin-2.css",
-                            "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
-                            "src/assets/vendor/datatables/extensiones/css/responsive.dataTables.min.css",
-                            "src/assets/vendor/datatables/extensiones/css/buttons.dataTables.min.css",
-                            "src/assets/vendor/datatables/dataTables.bootstrap4.min.css",
-                            "src/assets/vendor/datatables/extensiones/css/responsive.dataTables.min.css",
-                            "src/assets/vendor/datatables/extensiones/css/buttons.dataTables.min.css"
+                            "src/assets/css/sb-admin-2.css"
                         ],
-                        "scripts": [
-                            "src/assets/vendor/jquery/jquery.min.js",
-                            "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
-
-                            "src/assets/vendor/jquery-easing/jquery.easing.min.js",
-
-                            "src/assets/js/sb-admin-2.js",
-
-                            "src/assets/vendor/datatables/jquery.dataTables.min.js",
-                            "src/assets/vendor/datatables/dataTables.bootstrap4.min.js",
-
-                            "src/assets/vendor/datatables/extensiones/js/dataTables.responsive.min.js",
-
-                            "src/assets/vendor/datatables/extensiones/js/dataTables.buttons.min.js",
-                            "src/assets/vendor/datatables/extensiones/js/jszip.min.js",
-                            "src/assets/vendor/datatables/extensiones/js/buttons.html5.min.js",
-                            "src/assets/vendor/datatables/extensiones/js/buttons.print.min.js"
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {

@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { ModalClienteComponent } from './modal-cliente/modal-cliente.component';
 import Swal from 'sweetalert2';
+import { ClienteResponse } from '../../core/models/cliente-response';
 
 @Component({
   selector: 'app-clientes',
@@ -15,8 +16,8 @@ import Swal from 'sweetalert2';
 })
 
 export class ClientesComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'email', 'ciudad', 'acciones'];
-  dataInicio: Cliente[] = [];
+  displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'username', 'email', 'ciudad', 'acciones'];
+  dataInicio: ClienteResponse[] = [];
   dataListaClientes = new MatTableDataSource(this.dataInicio);
 
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
@@ -100,7 +101,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
           },
           error: () => {
             this._snackBar.open('Error al eliminar el Cliente', '', {
-              duration: 2000
+              duration: 2000,
             });
           }
         });

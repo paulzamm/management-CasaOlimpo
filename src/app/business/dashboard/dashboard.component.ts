@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
-import { AuthService } from '../../core/services/auth.service';
+import { CategoriaService } from '../../core/services/categoria.service';
+import { PrendaService } from '../../core/services/prenda.service';
+import { Categoria } from '../../core/models/categoria';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PrendaResponse } from '../../core/models/prenda-response';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +14,57 @@ import { AuthService } from '../../core/services/auth.service';
 export class DashboardComponent {
   private charVentas!: Chart;
   private charProductos!: Chart;
-  constructor(private auth: AuthService){}
+  listaCategorias: Categoria [] = [];
+  listaPrendas: PrendaResponse [] = [];
+
+  constructor(private _snackBar: MatSnackBar,
+    private _categoriaService: CategoriaService,
+    private _prendaService: PrendaService
+  ){}
 
 
   ngOnInit(): void {
-    //Gráfica de ventas
+    this.getCategorias();
+    this.getPrendas();
+    this.graficarVentas();
+    this.graficarProductos();
+  }
+
+  getCategorias(){
+    this._categoriaService.getCategorias(0, 10000).subscribe({
+      next: (data) => {
+        this.listaCategorias = data;
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar las categorias', '', {
+          duration: 2000
+        });
+      }
+    });
+  }
+
+  getPrendas(){
+    this._prendaService.getPrendas(0, 10000).subscribe({
+      next: (data) => {
+        this.listaPrendas = data;
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar las prendas', '', {
+          duration: 2000
+        });
+      }
+    });
+  }
+  
+  totalCategorias(): number{
+    return this.listaCategorias.length;
+  }
+
+  totalPrendas() : number{
+    return this.listaPrendas.length;
+  }
+
+  graficarVentas(){
     const labelsVentas = [
       '13/06/2024',
       '14/06/2024',
@@ -64,8 +114,9 @@ export class DashboardComponent {
         },
       },
     });
+  }
 
-    //Gráfica de productos
+  graficarProductos(){
     const dataProductos = {
       labels: ['Producto A', 'Producto B', 'Producto C', 'Producto D'],
       datasets: [

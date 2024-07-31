@@ -94,37 +94,43 @@ export class ModalClienteComponent implements OnInit {
 
     if(this.obCliente == null){
       this._clienteService.createCliente(_cliente).subscribe({
-        next: () =>{
-          this._snackBar.open('Cliente creado con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) =>{
+          if(res){
+            this._snackBar.open('Cliente creado con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo crear el Cliente', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () => {
-          this._snackBar.open('Error al crear el cliente', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+          this._snackBar.open('Error al crear el Cliente', '', {
+            duration: 2000,
           });
         }
       });
     }else{
       this._clienteService.updateCliente(_cliente).subscribe({
-        next: () =>{
-          this._snackBar.open('Cliente actualizado con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) =>{
+          if(res){
+            this._snackBar.open('Cliente actualizado con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo actualizar el Cliente', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () => {
           this._snackBar.open('Error al actualizar el cliente', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+            duration: 2000,
           });
         }
     });

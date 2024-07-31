@@ -35,12 +35,6 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.myUrl, usuario, { headers });
   }
 
-  updateUsuario(usuario: Usuario): Observable<Usuario>{
-    const headers = this.auth.getHeaders();
-    const url = `${this.myUrl}${usuario.id_usuario}`;
-    return this.http.put<Usuario>(url, usuario, { headers });
-  }
-
   deleteUsuario(id_usuario: number): Observable<Usuario>{
     const headers = this.auth.getHeaders();
     const url = `${this.myUrl}${id_usuario}`;

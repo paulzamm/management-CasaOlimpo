@@ -25,7 +25,7 @@ export class LoginComponent {
   initForm():FormGroup{
     return this._formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]]
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]]
     });
   }
 
@@ -33,26 +33,41 @@ export class LoginComponent {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
     this.auth.login(this.username, this.password).subscribe({
-      next: () => {
-        this.auth.getCurrentUser().subscribe({
-          next: (data) => {
-            if(data.id_rol === 1){
-              this.router.navigate(['/pages/dashboard'])
-            }else{
-              Swal.fire({
-                icon: 'error',
-                title: 'Acceso denegado',
-                text: 'No tienes permisos para acceder a esta sección',
-                confirmButtonText: 'Aceptar'
-              });
-              this.auth.logout();
+      next: (res) => {
+        if(res){
+          this.auth.getCurrentUser().subscribe({
+            next: (data) => {
+              if(data.id_rol === 1){
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Bienvenido',
+                  text: 'Inicio de sesión exitoso',
+                  showConfirmButton: false,
+                  timer: 1250
+                });
+                this.router.navigate(['/pages/dashboard'])
+              }else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Acceso denegado',
+                  text: 'No tienes permisos para acceder a esta sección',
+                  confirmButtonText: 'Aceptar'
+                });
+                this.auth.logout();
+              }
             }
-          }
-        });
+          });
+        }else{
+          this._snackBar.open('No se pudo iniciar sesión', 'Cerrar', {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+          });
+        }
       },
-      error: () => {
-        this._snackBar.open('Usuario o contraseña incorrectos', 'Cerrar', {
-          duration: 3000,
+      error: (error) => {
+        this._snackBar.open(error.error.detail, 'Cerrar', {
+          duration: 2000,
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
         }); 

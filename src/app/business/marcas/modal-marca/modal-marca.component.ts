@@ -56,37 +56,43 @@ export class ModalMarcaComponent implements OnInit{
     }
     if(this.obMarca == null){
       this._marcaService.createMarca(_marca).subscribe({
-        next: () => {
-          this._snackBar.open('Marca creada con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) => {
+          if(res){
+            this._snackBar.open('Marca creada con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo crear la marca', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () => {
           this._snackBar.open('Error al crear la marca', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+            duration: 2000,
           });
         }
       });
     }else{
       this._marcaService.updateMarca(_marca).subscribe({
-        next: () => {
-          this._snackBar.open('Marca actualizada con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) => {
+          if(res){
+            this._snackBar.open('Marca actualizada con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo actualizar la marca', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () => {
           this._snackBar.open('Error al actualizar la marca', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+            duration: 2000,
           });
         }
       });

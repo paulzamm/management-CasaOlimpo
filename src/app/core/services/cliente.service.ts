@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Cliente } from '../models/cliente';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { ClienteResponse } from '../models/cliente-response';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,14 @@ export class ClienteService {
     this.myUrl = `${this.myappUrl}${this.myapiUrl}`;
    }
 
-  getClientes(skip: number, limit: number): Observable<Cliente[]>{
+  getClientes(skip: number, limit: number): Observable<ClienteResponse[]>{
     const headers = this.auth.getHeaders();
-    return this.http.get<Cliente[]>(`${this.myUrl}?skip=${skip}&limit=${limit}`, { headers });
+    return this.http.get<ClienteResponse[]>(`${this.myUrl}?skip=${skip}&limit=${limit}`, { headers });
   }
 
-  getClienteById(id_cliente: number): Observable<Cliente>{
+  getClienteById(id_cliente: number): Observable<ClienteResponse>{
     const headers = this.auth.getHeaders();
-    return this.http.get<Cliente>(`${this.myUrl}${id_cliente}`, { headers });
+    return this.http.get<ClienteResponse>(`${this.myUrl}${id_cliente}`, { headers });
   }
 
   createCliente(cliente: Cliente): Observable<Cliente>{

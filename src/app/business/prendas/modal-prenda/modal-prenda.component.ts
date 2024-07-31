@@ -157,37 +157,43 @@ export class ModalPrendaComponent implements OnInit{
 
     if(this.obPrenda == null){
       this._prendaService.createPrenda(_prenda).subscribe({
-        next: () =>{
-          this._snackBar.open('Prenda guardada correctamente', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) =>{
+          if(res){
+            this._snackBar.open('Prenda guardada correctamente', '', {
+              duration: 1500,
+            });
+          }else{
+            this._snackBar.open('No se pudo guardar la prenda', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () =>{
           this._snackBar.open('Error al guardar la prenda', '', {
             duration: 2000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
           });
         }
       });
     }else{
       this._prendaService.updatePrenda(_prenda).subscribe({
-        next: () =>{
-          this._snackBar.open('Prenda actualizada correctamente', '', {
-            duration: 2000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) =>{
+          if(res){
+            this._snackBar.open('Prenda actualizada correctamente', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo actualizar la prenda', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () =>{
           this._snackBar.open('Error al actualizar la prenda', '', {
             duration: 2000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
           });
         }
       });

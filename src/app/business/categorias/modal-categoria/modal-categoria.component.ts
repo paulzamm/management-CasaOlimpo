@@ -55,37 +55,43 @@ export class ModalCategoriaComponent implements OnInit{
     }
     if(this.obCategoria == null){
       this._categoriaService.createCategoria(_categoria).subscribe({
-        next: () => {
-          this._snackBar.open('Categoría creada con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) => {
+          if(res){
+            this._snackBar.open('Categoría creada con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo crear la categoría', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () => {
           this._snackBar.open('Error al crear la categoría', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+            duration: 2000,
           });
         }
       });
     }else{
       this._categoriaService.updateCategoria(_categoria).subscribe({
-        next: () => {
-          this._snackBar.open('Categoría actualizada con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) => {
+          if(res){
+            this._snackBar.open('Categoría actualizada con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo actualizar la categoría', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
         error: () => {
           this._snackBar.open('Error al actualizar la categoría', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+            duration: 2000,
           });
         }
       });

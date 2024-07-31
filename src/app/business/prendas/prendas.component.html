@@ -31,13 +31,13 @@
                 <!-- Marca Column -->
                 <ng-container matColumnDef="marca">
                     <th mat-header-cell *matHeaderCellDef class="w-15"> Marca </th>
-                    <td mat-cell *matCellDef="let element"> {{ getMarcaNombre(element.id_marca) }}</td>
+                    <td mat-cell *matCellDef="let element"> {{ element.marca.nombre_marca }}</td>
                 </ng-container>
 
                 <!-- Categoria Column -->
                 <ng-container matColumnDef="categoria">
                     <th mat-header-cell *matHeaderCellDef class="w-15"> Categoria </th>
-                    <td mat-cell *matCellDef="let element"> {{ getCategoriaNombre(element.id_categoria) }}</td>
+                    <td mat-cell *matCellDef="let element"> {{ element.categoria.nombre_categoria }}</td>
                 </ng-container>
 
                 <!-- Talla Column -->
@@ -55,7 +55,7 @@
                 <!-- Precio Column -->
                 <ng-container matColumnDef="precio">
                     <th mat-header-cell *matHeaderCellDef class="w-15"> Precio </th>
-                    <td mat-cell *matCellDef="let element"> {{element.precio_prenda}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.precio_prenda | currency: 'USD' }} </td>
                 </ng-container>
 
                 <!-- Acciones Column -->

@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Prenda } from '../models/prenda';
+import { PrendaResponse } from '../models/prenda-response';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,14 @@ export class PrendaService {
     this.myUrl = `${this.myappUrl}${this.myapiUrl}`;
    }
 
-  getPrendas(skip: number, limit: number): Observable<Prenda[]>{
+  getPrendas(skip: number, limit: number): Observable<PrendaResponse[]>{
     const headers = this.auth.getHeaders();
-    return this.http.get<Prenda[]>(`${this.myUrl}?skip=${skip}&limit=${limit}`, { headers });
+    return this.http.get<PrendaResponse[]>(`${this.myUrl}?skip=${skip}&limit=${limit}`, { headers });
   }
 
-  getPrendaById(id_prenda: number): Observable<Prenda>{
+  getPrendaById(id_prenda: number): Observable<PrendaResponse>{
     const headers = this.auth.getHeaders();
-    return this.http.get<Prenda>(`${this.myUrl}${id_prenda}`, { headers });
+    return this.http.get<PrendaResponse>(`${this.myUrl}${id_prenda}`, { headers });
   }
 
   createPrenda(prenda: Prenda): Observable<Prenda>{

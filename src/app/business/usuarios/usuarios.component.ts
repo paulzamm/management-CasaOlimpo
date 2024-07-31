@@ -50,7 +50,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
       },
       error: () => {
         this._snackBar.open('Error al cargar los usuarios', '', {
-          duration: 2000
+          duration: 2000,
         });
       }
     });
@@ -63,7 +63,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
       },
       error: () => {
         this._snackBar.open('Error al cargar los roles', '', {
-          duration: 2000
+          duration: 2000,
         });
       }
     });
@@ -105,17 +105,21 @@ export class UsuariosComponent implements OnInit, AfterViewInit{
               });
             }else{
               this._usuarioService.deleteUsuario(id).subscribe({
-                next: (data) =>{
-                  if(data){
+                next: (res) =>{
+                  if(res){
                     this.getUsuarios();
                     this._snackBar.open('Usuario eliminado con éxito', '', {
-                      duration: 2000
+                      duration: 2000,
+                    });
+                  }else{
+                    this._snackBar.open('No se pudo eliminar el Usuario', '', {
+                      duration: 2000,
                     });
                   }
                 },
                 error: () => {
-                  this._snackBar.open('Error al eliminar el Usuario', '', {
-                    duration: 2000
+                  this._snackBar.open('No se puede eliminar, el usuario se encuentra en uso', '', {
+                    duration: 2000,
                   });
                 }
               });

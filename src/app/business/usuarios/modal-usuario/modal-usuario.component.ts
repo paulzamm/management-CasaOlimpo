@@ -59,19 +59,22 @@ export class ModalUsuarioComponent implements OnInit{
 
     if(this.obUsuario == null){
       this._usuarioService.createUsuario(_usuario).subscribe({
-        next: () => {
-          this._snackBar.open('Usuario creado con éxito', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
+        next: (res) => {
+          if(res){
+            this._snackBar.open('Usuario creado con éxito', '', {
+              duration: 2000,
+            });
+          }else{
+            this._snackBar.open('No se pudo crear el Usuario', '', {
+              duration: 2000,
+            });
+          }
+          
           this.modalActual.close('true');
         },
-        error: () => {
-          this._snackBar.open('Error al crear el Usuario', '', {
-            duration: 1500,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+        error: (error) => {
+          this._snackBar.open(error.error.detail, '', {
+            duration: 2000,
           });
         }
       });

@@ -8,9 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalPrendaComponent } from './modal-prenda/modal-prenda.component';
 import { CategoriaService } from '../../core/services/categoria.service';
 import { MarcaService } from '../../core/services/marca.service';
-import { Categoria } from '../../core/models/categoria';
-import { Marca } from '../../core/models/marca';
 import Swal from 'sweetalert2';
+import { PrendaResponse } from '../../core/models/prenda-response';
 
 @Component({
   selector: 'app-prendas',
@@ -19,10 +18,8 @@ import Swal from 'sweetalert2';
 })
 export class PrendasComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['nombre', 'descripcion', 'marca', 'categoria', 'talla', 'color', 'precio','acciones'];
-  dataInicio: Prenda[] = [];
+  dataInicio: PrendaResponse[] = [];
   dataListaPrendas = new MatTableDataSource(this.dataInicio);
-  listaCategorias: Categoria [] = [];
-  listaMarcas: Marca [] = [];
   
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
 
@@ -32,8 +29,6 @@ export class PrendasComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getCategorias();
-    this.getMarcas();
     this.getPrendas();
   }
 
@@ -59,40 +54,6 @@ export class PrendasComponent implements OnInit, AfterViewInit {
     });
   }
   
-  getCategorias(){
-    this._categoriaService.getCategorias(0, 10000).subscribe({
-      next: (data) => {
-        this.listaCategorias = data;
-      },
-      error: () => {
-        this._snackBar.open('Error al cargar las categorias', '', {
-          duration: 2000
-        });
-      }
-    });
-  }
-
-  getMarcas(){
-    this._marcaService.getMarcas(0, 10000).subscribe({
-      next: (data) => {
-        this.listaMarcas = data;
-      },
-      error: () => {
-        this._snackBar.open('Error al cargar las marcas', '', {
-          duration: 2000
-        });
-      }
-    });
-  }
-
-  getCategoriaNombre(id: number): string{
-    return this.listaCategorias.find(x => x.id_categoria === id)?.nombre_categoria || '';
-  }
-  
-  getMarcaNombre(id: number): string{
-    return this.listaMarcas.find(x => x.id_marca === id)?.nombre_marca || '';
-  }
-
   createPrenda(){
     this._dialog.open(ModalPrendaComponent, {
       width: '700px',
