@@ -26,6 +26,8 @@ import { ModalPrendaComponent } from './business/prendas/modal-prenda/modal-pren
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-usuario.component';
+import { ReportesComponent } from './business/reportes/reportes.component';
+import { HistorialVentasComponent } from './business/historial-ventas/historial-ventas.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-u
     UsuariosComponent,
     ModalUsuarioComponent,
     VentasComponent,
-    ModalPrendaComponent
+    ModalPrendaComponent,
+    HistorialVentasComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,

@@ -16,8 +16,8 @@ export class SidenavComponent {
     { icon: 'sell', label: 'Categorías', route: '/pages/categorias' },
     { icon: 'list_alt', label: 'Prendas', route: '/pages/prendas' },
     { icon: 'currency_exchange', label: 'Venta', route: '/pages/ventas' },
-    { icon: 'edit_note', label: 'Historial Ventas', route: '/pages/ventas' },
-    { icon: 'receipt', label: 'Reportes', route: '/pages/ventas' },
+    { icon: 'edit_note', label: 'Historial Ventas', route: '/pages/historial-ventas' },
+    { icon: 'receipt', label: 'Reportes', route: '/pages/reportes' },
   ]);
 }
 

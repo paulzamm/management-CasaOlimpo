@@ -1,1 +1,120 @@
-<p>ventas works!</p>
+<mat-card class="mat-elevation-z2">
+    <mat-card-title>
+        <mat-toolbar color="secondary">
+            <span>Venta</span>
+        </mat-toolbar>
+    </mat-card-title>
+    <mat-card-content class="dashboard-card-content mt-4">
+        <form [formGroup]="ventaForm" (ngSubmit)="addPrenda()">
+            <mat-grid-list cols="4" rowHeight="80px">
+                <mat-grid-tile [colspan]="2">
+                    <mat-form-field class="w-full" appearance="fill">
+                        <mat-label>Prenda</mat-label>
+                        <input matInput type="text" placeholder="Buscar..." [matAutocomplete]="autoPrenda" formControlName="prenda">
+                        <mat-autocomplete autoActiveFirstOption #autoPrenda="matAutocomplete" (optionSelected)="prendaVenta($event)" [displayWith]="showPrenda">
+                            <mat-option *ngFor="let option of listaPrendasFiltro" [value]="option">
+                                {{ option.nombre_prenda }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1">
+                    <mat-form-field class="w-full ml-3">
+                        <mat-label>Tipo de Pago</mat-label>
+                        <mat-select formControlName="metodo_pago_venta">
+                            <mat-option value="Efectivo">Efectivo</mat-option>
+                            <mat-option value="Tarjeta">Tarjeta</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="bg-rose-500 text-white px-4 py-2 rounded cursor-pointer flex items-center justify-center w-4/5 mat-elevation-z1">
+                        Total: {{ totalVenta.toFixed(2) | currency }}
+                    </div>
+                </mat-grid-tile>
+
+            </mat-grid-list>
+            <mat-grid-list cols="4" rowHeight="80px">
+                <mat-grid-tile [colspan]="2">
+                    <mat-form-field class="w-full" appearance="fill">
+                        <mat-label>Cliente</mat-label>
+                        <input matInput type="text" placeholder="Buscar..." [matAutocomplete]="autoCliente" formControlName="cliente">
+                        <mat-autocomplete autoActiveFirstOption #autoCliente="matAutocomplete" (optionSelected)="clienteVenta($event)" [displayWith]="showCliente">
+                            <mat-option *ngFor="let option of listaClientesFiltro" [value]="option">
+                                {{ option.primer_nombre_cliente }} {{ option.segundo_nombre_cliente }} {{ option.primer_apellido_cliente }} {{ option.segundo_apellido_cliente }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field class="w-full ml-3">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput type="number" autocomplete="off" formControlName="cantidad" class="w-full" min="1">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <button mat-raised-button color="primary" style="width: 80%;" [disabled]="ventaForm.invalid">
+                        <mat-icon>add</mat-icon>
+                        <span>Agregar</span>
+                    </button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+
+        <div class="mat-elevation-z1" style="overflow: auto;">
+            <table mat-table [dataSource]="dataDetalleVenta">
+
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="nombre_prenda">
+                    <th mat-header-cell *matHeaderCellDef class="w-15">Prenda</th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre_prenda}} </td>
+                </ng-container>
+
+                <!-- Cantidad Column -->
+                <ng-container matColumnDef="cantidad">
+                    <th mat-header-cell *matHeaderCellDef class="w-15">Cantidad</th>
+                    <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+                </ng-container>
+
+                <!-- Precio Column -->
+                <ng-container matColumnDef="precio">
+                    <th mat-header-cell *matHeaderCellDef class="w-15">Precio</th>
+                    <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
+                </ng-container>
+
+                <!-- Total Column -->
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef class="w-15">Subtotal</th>
+                    <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
+                </ng-container>
+
+                <!-- Acciones Column -->
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef class="w-5"></th>
+                    <td mat-cell *matCellDef="let element" style="text-align: start;">
+                        <a class="pointer text-red-500 hover:text-red-400" matTooltip="Eliminar Prenda" (click)="deletePrendaVenta(element)">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+            </table>
+        </div>
+
+        <mat-grid-list cols="4" rowHeight="80px">
+            <mat-grid-tile [colspan]="3"></mat-grid-tile>
+            <mat-grid-tile>
+                <button mat-raised-button color="primary" style="width: 80%;" [disabled]="listaPrendasVenta.length < 1 || hiddeRegisterButton" (click)="registrarVenta()">
+                    <mat-icon>new_label</mat-icon>
+                    <span>Registrar</span>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>

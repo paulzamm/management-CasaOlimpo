@@ -24,6 +24,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { MatDividerModule } from '@angular/material/divider'; 
 
 @NgModule({
   declarations: [],
@@ -49,7 +51,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatListModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
+    MatDividerModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -72,7 +76,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatListModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
+    MatDividerModule
   ],
   providers:[
     MatDatepickerModule,
