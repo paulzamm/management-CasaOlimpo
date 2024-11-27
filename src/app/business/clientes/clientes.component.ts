@@ -100,7 +100,7 @@ export class ClientesComponent implements OnInit, AfterViewInit {
             }
           },
           error: () => {
-            this._snackBar.open('Error al eliminar el Cliente', '', {
+            this._snackBar.open('No se puede eliminar, el cliente se encuentra en uso', '', {
               duration: 2000,
             });
           }

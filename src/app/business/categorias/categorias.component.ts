@@ -97,7 +97,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit{
             }
           },
           error: () => {
-            this._snackBar.open('Error al eliminar la categoría', '', {
+            this._snackBar.open('No se puede eliminar, la categoria se encuentra en uso', '', {
               duration: 2000
             });
           }

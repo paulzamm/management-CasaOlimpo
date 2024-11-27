@@ -28,6 +28,8 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { ModalUsuarioComponent } from './business/usuarios/modal-usuario/modal-usuario.component';
 import { ReportesComponent } from './business/reportes/reportes.component';
 import { HistorialVentasComponent } from './business/historial-ventas/historial-ventas.component';
+import { ModalDetalleVentaComponent } from './business/historial-ventas/modal-detalle-venta/modal-detalle-venta.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,13 +51,15 @@ import { HistorialVentasComponent } from './business/historial-ventas/historial-
     VentasComponent,
     ModalPrendaComponent,
     HistorialVentasComponent,
-    ReportesComponent
+    ReportesComponent,
+    ModalDetalleVentaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     LayoutRoutingModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync(),

@@ -5,6 +5,8 @@ import { PrendaService } from '../../core/services/prenda.service';
 import { Categoria } from '../../core/models/categoria';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PrendaResponse } from '../../core/models/prenda-response';
+import { VentaService } from '../../core/services/venta.service';
+import { VentaResponse } from '../../core/models/venta-response';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,72 +16,106 @@ import { PrendaResponse } from '../../core/models/prenda-response';
 export class DashboardComponent {
   private charVentas!: Chart;
   private charProductos!: Chart;
-  listaCategorias: Categoria [] = [];
-  listaPrendas: PrendaResponse [] = [];
+  listaCategorias: Categoria[] = [];
+  listaPrendas: PrendaResponse[] = [];
+  listaVentas: VentaResponse[] = [];
+  ventasRecientes: VentaResponse[] = [];
+  produtosVendidos: any[] = [];
 
-  constructor(private _snackBar: MatSnackBar,
+  total: number = 0;
+
+  constructor(
+    private _snackBar: MatSnackBar,
     private _categoriaService: CategoriaService,
-    private _prendaService: PrendaService
-  ){}
-
+    private _prendaService: PrendaService,
+    private _ventaService: VentaService
+  ) {}
 
   ngOnInit(): void {
     this.getCategorias();
     this.getPrendas();
-    this.graficarVentas();
-    this.graficarProductos();
+    this.getVentas();
+    this.graficarProductos(['Camisa Adidas', 'Zapato nike', 'CamisaH&M', 'ShortAdidas'], [10, 20, 30, 40]);
   }
 
-  getCategorias(){
+  getCategorias() {
     this._categoriaService.getCategorias(0, 10000).subscribe({
       next: (data) => {
         this.listaCategorias = data;
       },
       error: () => {
         this._snackBar.open('Error al cargar las categorias', '', {
-          duration: 2000
+          duration: 2000,
         });
-      }
+      },
     });
   }
 
-  getPrendas(){
+  getPrendas() {
     this._prendaService.getPrendas(0, 10000).subscribe({
       next: (data) => {
         this.listaPrendas = data;
       },
       error: () => {
         this._snackBar.open('Error al cargar las prendas', '', {
-          duration: 2000
+          duration: 2000,
         });
-      }
+      },
     });
   }
-  
-  totalCategorias(): number{
+
+  getVentas() {
+    this._ventaService.getVentas(0, 10000).subscribe({
+      next: (data) => {
+        this.listaVentas = data;
+        // Filtrar ventas de los últimos 7 días
+        const ahora = new Date();
+        const hace7Dias = new Date(ahora);
+        hace7Dias.setDate(ahora.getDate() - 7);
+
+        this.ventasRecientes = data.filter((venta) => {
+          const fechaVenta = new Date(venta.fecha_venta);
+          return fechaVenta >= hace7Dias && fechaVenta <= ahora;
+        });
+        const labelTemp = this.ventasRecientes.map((value) => value.fecha_venta);
+        const dataTemp = this.ventasRecientes.map((value) => value.total_venta);
+        this.graficarVentas(labelTemp, dataTemp);
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar las ventas', '', {
+          duration: 2000,
+        });
+      },
+    });
+  }
+
+  totalCategorias(): number {
     return this.listaCategorias.length;
   }
 
-  totalPrendas() : number{
+  totalPrendas(): number {
     return this.listaPrendas.length;
   }
 
-  graficarVentas(){
-    const labelsVentas = [
-      '13/06/2024',
-      '14/06/2024',
-      '15/06/2024',
-      '16/06/2024',
-      '17/06/2024',
-      '18/06/2024',
-      '19/06/2024',
-    ];
+  totalVentas(): number {
+    return this.listaVentas.length;
+  }
+
+  totalIngresos(): number {
+    this.total = 0;
+    this.listaVentas.forEach((venta) => {
+      this.total += venta.total_venta;
+    });
+    return this.total;
+  }
+  
+  graficarVentas(labelGrafico: any[], dataGrafico: any[]) {
     const dataVentas = {
-      labels: labelsVentas,
+      labels: labelGrafico,
       datasets: [
         {
-          label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          label: 'Venta',
+          data: dataGrafico,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 159, 64, 0.2)',
@@ -116,13 +152,13 @@ export class DashboardComponent {
     });
   }
 
-  graficarProductos(){
+  graficarProductos(labels: string[], data: number[]) {
     const dataProductos = {
-      labels: ['Producto A', 'Producto B', 'Producto C', 'Producto D'],
+      labels: labels,
       datasets: [
         {
-          label: 'My First Dataset',
-          data: [55, 30, 15, 10],
+          label: 'Productos',
+          data: data,
           backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#FF785B'],
           hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#FF5733'],
           hoverBorderColor: 'rgba(234, 236, 244, 1)',

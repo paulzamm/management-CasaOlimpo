@@ -179,7 +179,6 @@ export class VentasComponent implements OnInit {
         prendas: this.listaDetalleVenta
       }
 
-      console.log(_venta);
       this.listaPrendasVenta = [];
       this.listaDetalleVenta = [];
       this.dataDetalleVenta = new MatTableDataSource(this.listaPrendasVenta);
@@ -205,6 +204,12 @@ export class VentasComponent implements OnInit {
         },
         complete: () => {
           this.hiddeRegisterButton = false;
+          this.ventaForm.reset({
+            prenda: '',
+            cantidad: 1,
+            cliente: '',
+            metodo_pago_venta: this.tipoPago 
+          });
         },
         error: () => {
           this._snackBar.open('Error al registrar la venta', '', {

@@ -101,7 +101,7 @@ export class PrendasComponent implements OnInit, AfterViewInit {
             }
           },
           error: () => {
-            this._snackBar.open('Error al eliminar la Prenda', '', {
+            this._snackBar.open('No se puede eliminar, la prenda se encuentra en uso', '', {
               duration: 2000
             });
           }

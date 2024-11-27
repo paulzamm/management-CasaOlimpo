@@ -97,7 +97,7 @@ export class MarcasComponent implements OnInit, AfterViewInit {
             }
           },
           error: () => {
-            this._snackBar.open('Error al eliminar la marca', '', {
+            this._snackBar.open('No se puede eliminar, la marca se encuentra en uso', '', {
               duration: 2000
             });
           }

@@ -1,6 +1,6 @@
 import { Prenda } from "./prenda";
 
-export interface DetalleVentaResponse {
+export interface     DetalleVentaResponse {
     id_detalle_venta: number;
     id_venta: number;
     id_prenda: number;
