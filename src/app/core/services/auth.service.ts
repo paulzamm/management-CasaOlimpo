@@ -10,18 +10,14 @@ import { Usuario } from '../models/usuario';
 })
 export class AuthService {
   private myappUrl: string;
-  private myapiUrl: string;
-  private myUrl: string;
   private tokenKey = 'authToken';
 
   constructor(private http: HttpClient, private router: Router) { 
     this.myappUrl = environment.apiUrl;
-    this.myapiUrl = 'token/';
-    this.myUrl = `${this.myappUrl}${this.myapiUrl}`;
   }
   
   /**
-   * Iniciar Sesión
+   * Iniciar Sesión - Enviar código 2FA
    * @param username 
    * @param password 
    * @returns 
@@ -32,7 +28,22 @@ export class AuthService {
     });
     const body = `grant_type=&username=${username}&password=${password}&scope=&client_id=&client_secret=`
 
-    return this.http.post(this.myUrl, body, { headers } ).pipe(
+    return this.http.post(`${this.myappUrl}login`, body, { headers } )
+  }
+
+  /**
+   * Verificar código 2FA
+   * @param username 
+   * @param password 
+   * @returns 
+   */
+  verify2fa(code:string, username: string, password: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    const body = `code=${code}&grant_type=&username=${username}&password=${password}&scope=&client_id=&client_secret=`
+
+    return this.http.post(`${this.myappUrl}verify-2fa`, body, { headers } ).pipe(
       tap((response: any) => {
         if(response.access_token){
           this.setToken(response.access_token);

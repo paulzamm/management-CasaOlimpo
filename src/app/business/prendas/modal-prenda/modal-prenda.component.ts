@@ -134,7 +134,8 @@ export class ModalPrendaComponent implements OnInit{
       this.imageURL = url;
       this.loading = false;
     })
-    .catch(() =>{
+    .catch((error) =>{
+      console.log(error);
       this._snackBar.open('Error al cargar la imagen', '', {
         duration: 2000
       });

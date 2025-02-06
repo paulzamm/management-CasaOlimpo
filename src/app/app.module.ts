@@ -71,8 +71,7 @@ import { FormsModule } from '@angular/forms';
       messagingSenderId: "559391945141",
       appId: "1:559391945141:web:4cd281285a5b118c4829fc",
   })),
-  
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
   bootstrap: [AppComponent]
 })

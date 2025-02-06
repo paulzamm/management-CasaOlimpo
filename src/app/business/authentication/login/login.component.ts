@@ -32,29 +32,56 @@ export class LoginComponent {
   login(): void{
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
+
     this.auth.login(this.username, this.password).subscribe({
       next: (res) => {
         if(res){
-          this.auth.getCurrentUser().subscribe({
-            next: (data) => {
-              if(data.id_rol === 1){
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Bienvenido',
-                  text: 'Inicio de sesión exitoso',
-                  showConfirmButton: false,
-                  timer: 1250
-                });
-                this.router.navigate(['/pages/dashboard'])
-              }else{
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Acceso denegado',
-                  text: 'No tienes permisos para acceder a esta sección',
-                  confirmButtonText: 'Aceptar'
-                });
-                this.auth.logout();
-              }
+          Swal.fire({
+            icon: 'info',
+            title: 'Código de verificación Requerido',
+            text: 'Por favor, ingrese el código de verificación que se ha enviado a su correo electrónico',
+            input: 'text',
+            inputPlaceholder: 'Ingrese aquí el código de verificación',
+            showCancelButton: true,
+            confirmButtonText: 'Verificar',
+            cancelButtonText: 'Cancelar',
+          }).then((result) => {
+            if(result.isConfirmed){
+              const code = result.value;
+
+              this.auth.verify2fa(code, this.username, this.password).subscribe({
+                next: (res) => {
+                  if(res){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Bienvenido',
+                      text: 'Inicio de sesión exitoso',
+                      showConfirmButton: false,
+                      timer: 1250
+                    });
+                    this.router.navigate(['/pages/dashboard'])
+                  }else{
+                    this._snackBar.open('No se pudo verificar el código', 'Cerrar', {
+                      duration: 2000,
+                      horizontalPosition: 'center',
+                      verticalPosition: 'bottom',
+                    });
+                  }
+                },
+                error: (error) => {
+                  this._snackBar.open(error.error.detail, 'Cerrar', {
+                    duration: 2000,
+                    horizontalPosition: 'center',
+                    verticalPosition: 'bottom',
+                  }); 
+                }
+              });
+            }else{
+              this._snackBar.open('Operación Cancelada', 'Cerrar', {
+                duration: 2000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+              });
             }
           });
         }else{
